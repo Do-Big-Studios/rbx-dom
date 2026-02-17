@@ -9,5 +9,4 @@ Change:
       Scriptability: Custom
     WorldPivotData:
       Scriptability: Custom
-      DefaultValue:
-        OptionalCFrame: ~
+      DefaultValue: !OptionalCFrame ~

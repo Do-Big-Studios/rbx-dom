@@ -6,8 +6,7 @@ Change:
     # generates a new ScriptGuid if the one in a file is an empty string, so
     # setting the default to be an empty string is a reasonable default. 
     ScriptGuid:
-      DefaultValue:
-        String: ""
+      DefaultValue: !String ""
 
   Script:
     Source:

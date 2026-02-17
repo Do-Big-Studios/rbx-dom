@@ -1,6 +1,5 @@
 Change:
   Terrain:
     MaterialColors:
-      DataType:
-        Value: "MaterialColors"
+      DataType: !Value MaterialColors
       Scriptability: Custom

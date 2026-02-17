@@ -5,11 +5,9 @@ Change:
     # instead. The all-zero UniqueId can appear in files multiple times so it's
     # the only default value that makes sense.
     UniqueId:
-      DefaultValue:
-        UniqueId: "00000000000000000000000000000000"
+      DefaultValue: !UniqueId "00000000000000000000000000000000"
     HistoryId:
-      DefaultValue:
-        UniqueId: "00000000000000000000000000000000"
+      DefaultValue: !UniqueId "00000000000000000000000000000000"
 
     archivable:
       AliasFor: Archivable
@@ -18,8 +16,7 @@ Change:
         Type: SerializesAs
         As: archivable
       # Archivable has no default value recorded but we need it to be true
-      DefaultValue:
-        Bool: true
+      DefaultValue: !Bool true
 
     # DefinesCapabilities is exposed as `Sandboxed` in Roblox Studio, so we want
     # it as an alias.
@@ -38,8 +35,7 @@ Change:
     # Attributes serialize as a BinaryString with a strange name, but we want to
     # refer to them with a different name.
     Attributes:
-      DataType:
-        Value: "Attributes"
+      DataType: !Value Attributes
       Serialization:
         Type: SerializesAs
         As: AttributesSerialize
@@ -48,6 +44,5 @@ Change:
       AliasFor: Attributes
 
     Tags:
-      DataType:
-        Value: "Tags"
+      DataType: !Value Tags
       Scriptability: Custom
