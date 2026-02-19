@@ -13,10 +13,8 @@ expression: decoded_viewed
             family: "rbxasset://fonts/families/Creepster.json"
             weight: Regular
             style: Normal
-            cachedFaceId: ~
     SourceAssetId:
       Int64: -1
     Tags:
       Tags: []
   children: []
-

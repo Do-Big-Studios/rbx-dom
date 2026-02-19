@@ -83,11 +83,9 @@ chunks:
         - family: "rbxasset://fonts/families/SourceSansPro.json"
           weight: Regular
           style: Normal
-          cachedFaceId: ~
         - family: "rbxasset://fonts/families/Guru.json"
           weight: Regular
           style: Normal
-          cachedFaceId: ~
   - Prop:
       type_id: 2
       prop_name: Name

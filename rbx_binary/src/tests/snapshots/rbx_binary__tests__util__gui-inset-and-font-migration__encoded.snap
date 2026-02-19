@@ -277,7 +277,6 @@ chunks:
         - family: "rbxasset://fonts/families/SourceSansPro.json"
           weight: Regular
           style: Italic
-          cachedFaceId: ~
   - Prop:
       type_id: 3
       prop_name: LayoutOrder
@@ -633,7 +632,6 @@ chunks:
         - family: "rbxasset://fonts/families/SourceSansPro.json"
           weight: Bold
           style: Normal
-          cachedFaceId: ~
   - Prop:
       type_id: 2
       prop_name: LayoutOrder
@@ -969,7 +967,6 @@ chunks:
         - family: "rbxasset://fonts/families/Inconsolata.json"
           weight: Regular
           style: Normal
-          cachedFaceId: ~
   - Prop:
       type_id: 1
       prop_name: LayoutOrder

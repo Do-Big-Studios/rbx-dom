@@ -1,6 +1,5 @@
 ---
 source: rbx_binary/src/tests/util.rs
-assertion_line: 46
 expression: text_roundtrip
 ---
 num_types: 1
@@ -97,7 +96,6 @@ chunks:
         - family: "rbxasset://fonts/families/RobotoMono.json"
           weight: Bold
           style: Italic
-          cachedFaceId: ~
   - Prop:
       type_id: 0
       prop_name: LayoutOrder
@@ -336,4 +334,3 @@ chunks:
         - - 0
           - -1
   - End
-
