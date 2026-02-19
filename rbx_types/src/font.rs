@@ -116,6 +116,7 @@ pub struct Font {
     pub family: String,
     pub weight: FontWeight,
     pub style: FontStyle,
+    #[cfg_attr(feature = "serde", serde(default, skip_serializing))]
     pub cached_face_id: Option<String>,
 }
 
