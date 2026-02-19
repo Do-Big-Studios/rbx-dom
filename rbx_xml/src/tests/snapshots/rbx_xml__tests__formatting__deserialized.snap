@@ -76,7 +76,6 @@ expression: "DomViewer::new().view_children(&de)"
             family: Font Family
             weight: Thin
             style: Normal
-            cachedFaceId: ""
         TestInt:
           Int32: 1337
         TestInt64:

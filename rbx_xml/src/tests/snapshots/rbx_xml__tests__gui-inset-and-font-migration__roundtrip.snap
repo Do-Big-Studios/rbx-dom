@@ -130,7 +130,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
                 family: "rbxasset://fonts/families/Inconsolata.json"
                 weight: Regular
                 style: Normal
-                cachedFaceId: ~
             LayoutOrder:
               Int32: 0
             LineHeight:
@@ -255,7 +254,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
                 family: "rbxasset://fonts/families/SourceSansPro.json"
                 weight: Bold
                 style: Normal
-                cachedFaceId: ~
             LayoutOrder:
               Int32: 0
             LineHeight:
@@ -386,7 +384,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
                 family: "rbxasset://fonts/families/SourceSansPro.json"
                 weight: Regular
                 style: Italic
-                cachedFaceId: ~
             LayoutOrder:
               Int32: 0
             LineHeight:
@@ -481,4 +478,3 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             ZIndex:
               Int32: 1
           children: []
-

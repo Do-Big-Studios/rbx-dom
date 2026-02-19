@@ -43,7 +43,6 @@ expression: "DomViewer::new().view_children(&decoded)"
         family: "rbxasset://fonts/families/RobotoMono.json"
         weight: Bold
         style: Italic
-        cachedFaceId: ~
     LayoutOrder:
       Int32: 0
     LineHeight:
@@ -125,4 +124,3 @@ expression: "DomViewer::new().view_children(&decoded)"
     ZIndex:
       Int32: 1
   children: []
-
