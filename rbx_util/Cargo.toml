@@ -28,9 +28,9 @@ rbx_binary = { path = "../rbx_binary", features = ["unstable_text_format"] }
 rbx_xml = { path = "../rbx_xml" }
 
 serde_yaml = "0.9"
-clap = { version = "4.5.57", features = ["derive"] }
+clap = { version = "4.5.59", features = ["derive"] }
 
 fs-err = "2.11.0"
 anyhow = "1.0.101"
-env_logger = "0.11.8"
+env_logger = "0.11.9"
 log = "0.4.29"
