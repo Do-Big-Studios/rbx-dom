@@ -241,8 +241,7 @@
       "Font": {
         "family": "rbxasset://fonts/families/SourceSansPro.json",
         "weight": "Regular",
-        "style": "Normal",
-        "cachedFaceId": null
+        "style": "Normal"
       }
     },
     "ty": "Font"

@@ -133,8 +133,8 @@ impl<'de> serde::Deserialize<'de> for Tags {
                 A: serde::de::SeqAccess<'de>,
             {
                 let mut tags = Tags::new();
-                while let Some(tag) = seq.next_element()? {
-                    tags.push(tag);
+                while let Some(tag) = seq.next_element::<String>()? {
+                    tags.push(&tag);
                 }
                 Ok(tags)
             }
