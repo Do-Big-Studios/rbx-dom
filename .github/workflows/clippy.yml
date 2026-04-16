@@ -19,7 +19,7 @@ jobs:
         rust_version: [stable]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v6
       with:
         submodules: true
 

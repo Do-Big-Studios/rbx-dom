@@ -15,8 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v6
       - uses: CompeyDev/setup-rokit@v0.1.2
+        with:
+          version: 'v1.1.0'
+          token: ${{ secrets.SUBMODULE_PAT }}
 
       - name: Validate Crate Versions
         run: lune run validate-crate-versions
@@ -31,7 +34,7 @@ jobs:
         rust_version: [stable]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v6
       with:
         submodules: true
 
