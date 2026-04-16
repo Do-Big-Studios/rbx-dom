@@ -26,7 +26,7 @@ xml-rs = "1"
 
 [dev-dependencies]
 env_logger = "0.11"
-insta = { version = "1.46.3", features = ["yaml"] }
+insta = { version = "1.47.2", features = ["yaml"] }
 heck = "0.5"
 rbx_reflection_database = { path = "../rbx_reflection_database", features = [
     "debug_always_use_bundled",
