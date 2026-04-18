@@ -55,15 +55,13 @@ impl WeakDom {
         let mut unique_ids = AHashSet::with_capacity(instances.len());
         for inst in instances.values() {
             match inst.properties.get(&ustr("UniqueId")) {
-                Some(Variant::UniqueId(id)) => {
-                    if !unique_ids.insert(*id) {
-                        panic!(
-                            "UniqueId {} is duplicated in the provided `instances` map",
-                            id
-                        );
-                    }
+                Some(Variant::UniqueId(id)) if !unique_ids.insert(*id) => {
+                    panic!(
+                        "UniqueId {} is duplicated in the provided `instances` map",
+                        id
+                    );
                 }
-                None => {}
+                Some(Variant::UniqueId(_)) | None => {}
                 Some(val) => panic!(
                     "expected property UniqueId to be a UniqueId but it was instead a {:?}",
                     val.ty()
