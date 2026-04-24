@@ -1,9 +1,9 @@
 {
   "Version": [
     0,
-    717,
+    718,
     0,
-    7170982
+    7181104
   ],
   "Classes": {
     "Accessory": {
@@ -1629,7 +1629,7 @@
         },
         "Length": {
           "Name": "Length",
-          "Scriptability": "None",
+          "Scriptability": "Read",
           "DataType": {
             "Value": "Float32"
           },
@@ -3511,6 +3511,134 @@
           "Scriptability": "None",
           "DataType": {
             "Enum": "AnimationPriority"
+          },
+          "Tags": [
+            "Hidden",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "RefStepIdForTimePosition0": {
+          "Name": "RefStepIdForTimePosition0",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [
+            "Hidden",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "RefStepIdForTimePosition1": {
+          "Name": "RefStepIdForTimePosition1",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [
+            "Hidden",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "RefStepIdForTimePosition2": {
+          "Name": "RefStepIdForTimePosition2",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [
+            "Hidden",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "RefStepIdForTimePosition3": {
+          "Name": "RefStepIdForTimePosition3",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [
+            "Hidden",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "RefStepIdForTimePosition4": {
+          "Name": "RefStepIdForTimePosition4",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [
+            "Hidden",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "RefStepIdForTimePosition5": {
+          "Name": "RefStepIdForTimePosition5",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [
+            "Hidden",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "RefStepIdForTimePosition6": {
+          "Name": "RefStepIdForTimePosition6",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float64"
+          },
+          "Tags": [
+            "Hidden",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "RefStepIdForTimePosition7": {
+          "Name": "RefStepIdForTimePosition7",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Float64"
           },
           "Tags": [
             "Hidden",
@@ -26924,26 +27052,6 @@
           }
         }
       },
-      "DefaultProperties": {
-        "Archivable": {
-          "Bool": true
-        },
-        "HistoryId": {
-          "UniqueId": "00000000000000000000000000000000"
-        },
-        "UniqueId": {
-          "UniqueId": "00000000000000000000000000000000"
-        }
-      }
-    },
-    "EmotesPages": {
-      "Name": "EmotesPages",
-      "Tags": [
-        "NotCreatable",
-        "NotReplicated"
-      ],
-      "Superclass": "InventoryPages",
-      "Properties": {},
       "DefaultProperties": {
         "Archivable": {
           "Bool": true
@@ -62045,6 +62153,27 @@
         }
       }
     },
+    "SceneAnalysisService": {
+      "Name": "SceneAnalysisService",
+      "Tags": [
+        "NotCreatable",
+        "NotReplicated",
+        "Service"
+      ],
+      "Superclass": "Instance",
+      "Properties": {},
+      "DefaultProperties": {
+        "Archivable": {
+          "Bool": true
+        },
+        "HistoryId": {
+          "UniqueId": "00000000000000000000000000000000"
+        },
+        "UniqueId": {
+          "UniqueId": "00000000000000000000000000000000"
+        }
+      }
+    },
     "ScreenGui": {
       "Name": "ScreenGui",
       "Tags": [],
@@ -72589,14 +72718,12 @@
         },
         "TypeColor": {
           "Name": "TypeColor",
-          "Scriptability": "None",
+          "Scriptability": "ReadWrite",
           "DataType": {
             "Value": "Color3"
           },
           "Tags": [
-            "Hidden",
-            "NotReplicated",
-            "NotScriptable"
+            "NotReplicated"
           ],
           "Kind": {
             "Canonical": {
@@ -72648,6 +72775,19 @@
             }
           }
         },
+        "VAxisColor": {
+          "Name": "VAxisColor",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
         "Warning Color": {
           "Name": "Warning Color",
           "Scriptability": "ReadWrite",
@@ -72675,6 +72815,45 @@
           "Kind": {
             "Canonical": {
               "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "XAxisColor": {
+          "Name": "XAxisColor",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "YAxisColor": {
+          "Name": "YAxisColor",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
+            }
+          }
+        },
+        "ZAxisColor": {
+          "Name": "ZAxisColor",
+          "Scriptability": "None",
+          "DataType": {
+            "Value": "Color3"
+          },
+          "Tags": [],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "Serializes"
             }
           }
         }
@@ -73985,6 +74164,22 @@
           "Scriptability": "None",
           "DataType": {
             "Enum": "PreferredInput"
+          },
+          "Tags": [
+            "NotReplicated",
+            "NotScriptable"
+          ],
+          "Kind": {
+            "Canonical": {
+              "Serialization": "DoesNotSerialize"
+            }
+          }
+        },
+        "PreferredTextSize": {
+          "Name": "PreferredTextSize",
+          "Scriptability": "None",
+          "DataType": {
+            "Enum": "PreferredTextSize"
           },
           "Tags": [
             "NotReplicated",
@@ -93742,6 +93937,13 @@
         "Unknown": 0
       }
     },
+    "AntiAliasing": {
+      "name": "AntiAliasing",
+      "items": {
+        "Disabled": 0,
+        "Enabled": 1
+      }
+    },
     "AppLifecycleManagerState": {
       "name": "AppLifecycleManagerState",
       "items": {
@@ -93756,6 +93958,7 @@
       "items": {
         "AvatarEditorPageLoaded": 10,
         "GamePageLoaded": 8,
+        "HomePageInteractive": 11,
         "HomePageLoaded": 9,
         "None": 0,
         "OpenApp": 1,
@@ -95392,8 +95595,8 @@
     "ExternalEditorMode": {
       "name": "ExternalEditorMode",
       "items": {
-        "CustomEditor": 1,
-        "SystemDefault": 0
+        "SystemDefault": 0,
+        "UserSelectedEditor": 1
       }
     },
     "FACSDataLod": {
@@ -96326,7 +96529,7 @@
         "Thumbstick2Right": 1025,
         "Thumbstick2Up": 1022,
         "Tilde": 126,
-        "Touch": 1034,
+        "TouchPosition": 1034,
         "TrackpadPan": 1040,
         "TrackpadPinch": 1045,
         "Two": 50,
