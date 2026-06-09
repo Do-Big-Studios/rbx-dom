@@ -72,7 +72,7 @@ impl ConvertVariant for Variant {
                         log::warn!(
                             "Failed to parse Attributes on {class_name} because {err:?}; falling back to BinaryString.
 
-rbx-dom may require changes to fully support this property. Please open an issue at https://github.com/UserGeneratedLLC/rbx-dom/issues and show this warning."
+rbx-dom may require changes to fully support this property. Please open an issue at https://github.com/Do-Big-Studios/rbx-dom/issues and show this warning."
                         );
 
                         Ok(Cow::Owned(value.clone().into()))
@@ -86,7 +86,7 @@ rbx-dom may require changes to fully support this property. Please open an issue
                         log::warn!(
                             "Failed to parse MaterialColors on {class_name} because {err:?}; falling back to BinaryString.
 
-rbx-dom may require changes to fully support this property. Please open an issue at https://github.com/UserGeneratedLLC/rbx-dom/issues and show this warning."
+rbx-dom may require changes to fully support this property. Please open an issue at https://github.com/Do-Big-Studios/rbx-dom/issues and show this warning."
                         );
 
                         Ok(Cow::Owned(value.clone().into()))

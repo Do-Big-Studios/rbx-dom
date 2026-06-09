@@ -4,8 +4,8 @@ description = "Roblox reflection database and ambiguous type resolution"
 version = "6.1.0"
 license = "MIT"
 documentation = "https://docs.rs/rbx_reflection"
-homepage = "https://github.com/UserGeneratedLLC/rbx-dom"
-repository = "https://github.com/UserGeneratedLLC/rbx-dom.git"
+homepage = "https://github.com/Do-Big-Studios/rbx-dom"
+repository = "https://github.com/Do-Big-Studios/rbx-dom.git"
 readme = "README.md"
 authors = [
     "Lucien Greathouse <me@lpghatguy.com>",

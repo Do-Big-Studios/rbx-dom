@@ -4,8 +4,8 @@ version = "0.2.1"
 description = "Utilities for working with Roblox model and place files"
 license = "MIT"
 documentation = "https://docs.rs/rbx_util"
-homepage = "https://github.com/UserGeneratedLLC/rbx-dom"
-repository = "https://github.com/UserGeneratedLLC/rbx-dom.git"
+homepage = "https://github.com/Do-Big-Studios/rbx-dom"
+repository = "https://github.com/Do-Big-Studios/rbx-dom.git"
 authors = [
     "Lucien Greathouse <me@lpghatguy.com>",
     "Micah Reid <git@dekkonot.com>",

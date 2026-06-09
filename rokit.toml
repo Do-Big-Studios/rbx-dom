@@ -1,5 +1,5 @@
 [tools]
-atlas = "UserGeneratedLLC/atlas@8.6.114"
+atlas = "Do-Big-Studios/atlas@10.0.0"
 selene = "Kampfkarren/selene@0.30.1"
 stylua = "JohnnyMorganz/stylua@2.4.1"
 lune = "lune-org/lune@0.10.4"
