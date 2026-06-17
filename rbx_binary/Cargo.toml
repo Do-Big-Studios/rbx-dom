@@ -23,18 +23,18 @@ rbx_reflection = { version = "6.1.0", path = "../rbx_reflection" }
 rbx_reflection_database = { version = "2.0.2", path = "../rbx_reflection_database" }
 
 ahash = "0.8.12"
-log = "0.4.29"
+log = "0.4.32"
 lz4_flex = "0.12"
 thiserror = "2"
 serde = { version = "1.0.228", features = ["derive"], optional = true }
-profiling = "1.0.17"
+profiling = "1.0.18"
 zstd = "0.13.3"
 
 [dev-dependencies]
 criterion = "0.8"
 env_logger = "0.11"
 heck = "0.5"
-insta = { version = "1.47.2", features = ["yaml"] }
+insta = { version = "1.48.0", features = ["yaml"] }
 serde = { version = "1.0.228", features = ["derive"] }
 rbx_reflection_database = { path = "../rbx_reflection_database", features = [
     "debug_always_use_bundled",
