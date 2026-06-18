@@ -96,6 +96,17 @@ chunks:
         - Motor6D
         - Motor6D
   - Prop:
+      type_id: 0
+      prop_name: ReplicateCurrentOffset6D
+      prop_type: Vector3
+      values:
+        - - 0
+          - 0
+          - 0
+        - - 0
+          - 0
+          - 0
+  - Prop:
       type_id: 3
       prop_name: Name
       prop_type: String

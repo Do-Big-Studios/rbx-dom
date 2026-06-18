@@ -160,28 +160,10 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           properties:
             Attributes:
               Attributes: {}
-            CFrame0:
-              CFrame:
-                position:
-                  - 4
-                  - 1
-                  - -4
-                orientation:
-                  - - 1
-                    - 0
-                    - 0
-                  - - 0
-                    - 1
-                    - 0
-                  - - 0
-                    - 0
-                    - 1
             Part0: referent-1
             Part1: referent-3
             SourceAssetId:
               Int64: -1
-            State:
-              Int32: 3
             Tags:
               Tags: []
           children: []
@@ -326,4 +308,3 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             - 0
             - 0
       children: []
-

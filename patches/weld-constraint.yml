@@ -4,12 +4,20 @@ Change:
       Serialization:
         Type: SerializesAs
         As: Part0Internal
-    Part0Internal:
-      AliasFor: Part0
-
     Part1:
       Serialization:
         Type: SerializesAs
         As: Part1Internal
+
+# As of Roblox 726 these serialization-only aliases are no longer present in
+# the API dump, so they must be added rather than changed.
+Add:
+  WeldConstraint:
+    Part0Internal:
+      DataType: !Value Ref
+      Scriptability: None
+      AliasFor: Part0
     Part1Internal:
+      DataType: !Value Ref
+      Scriptability: None
       AliasFor: Part1

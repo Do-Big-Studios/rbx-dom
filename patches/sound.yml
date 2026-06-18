@@ -4,8 +4,6 @@ Change:
       Serialization:
         Type: SerializesAs
         As: xmlRead_MaxDistance_3
-    xmlRead_MaxDistance_3:
-      AliasFor: MaxDistance
 
     RollOffMinDistance:
       Serialization:
@@ -13,13 +11,11 @@ Change:
         As: EmitterSize
     EmitterSize:
       AliasFor: RollOffMinDistance
-    
+
     RollOffMaxDistance:
       Serialization:
         Type: SerializesAs
         As: xmlRead_MaxDistance_3
-    xmlRead_MaxDistance_3:
-      AliasFor: RollOffMaxDistance
 
     SoundId:
       Serialization:
@@ -27,3 +23,11 @@ Change:
         To: AudioContent
         Migration: ContentIdToContent
 
+# As of Roblox 726 this serialization-only alias is no longer present in the
+# API dump, so it must be added rather than changed.
+Add:
+  Sound:
+    xmlRead_MaxDistance_3:
+      DataType: !Value Float32
+      Scriptability: None
+      AliasFor: RollOffMaxDistance

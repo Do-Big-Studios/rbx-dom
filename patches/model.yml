@@ -1,12 +1,22 @@
 Change:
   Model:
-    ScaleFactor:
-      AliasFor: Scale
     Scale:
       Serialization:
         Type: SerializesAs
         As: ScaleFactor
       Scriptability: Custom
+
+# As of Roblox 726 these serialization-only members are no longer present in
+# the API dump, so they must be added rather than changed.
+Add:
+  Model:
+    ScaleFactor:
+      DataType: !Value Float32
+      Scriptability: None
+      AliasFor: Scale
     WorldPivotData:
+      DataType: !Value OptionalCFrame
       Scriptability: Custom
+      Serialization:
+        Type: Serializes
       DefaultValue: !OptionalCFrame ~

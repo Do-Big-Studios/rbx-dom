@@ -16,22 +16,16 @@ Change:
       Serialization:
         Type: SerializesAs
         As: Color3uint8
-    Color3uint8:
-      AliasFor: "Color"
 
     Size:
       Serialization:
         Type: SerializesAs
         As: size
-    size:
-      AliasFor: Size
 
     MaterialVariant:
       Serialization:
         Type: SerializesAs
         As: MaterialVariantSerialized
-    MaterialVariantSerialized:
-      AliasFor: MaterialVariant
 
   FormFactorPart:
     FormFactor:
@@ -40,16 +34,12 @@ Change:
         As: formFactorRaw
     formFactor:
       AliasFor: FormFactor
-    formFactorRaw:
-      AliasFor: FormFactor
 
   Part:
     Shape:
       Serialization:
         Type: SerializesAs
         As: shape
-    shape:
-      AliasFor: Shape
 
   MeshPart:
     MeshId:
@@ -62,3 +52,32 @@ Change:
         Type: Migrate
         To: TextureContent
         Migration: ContentIdToContent
+
+# As of Roblox 726 these serialization-only aliases are no longer present in
+# the API dump, so they must be added rather than changed.
+Add:
+  BasePart:
+    Color3uint8:
+      DataType: !Value Color3uint8
+      Scriptability: None
+      AliasFor: Color
+    size:
+      DataType: !Value Vector3
+      Scriptability: None
+      AliasFor: Size
+    MaterialVariantSerialized:
+      DataType: !Value String
+      Scriptability: None
+      AliasFor: MaterialVariant
+
+  FormFactorPart:
+    formFactorRaw:
+      DataType: !Enum FormFactor
+      Scriptability: None
+      AliasFor: FormFactor
+
+  Part:
+    shape:
+      DataType: !Enum PartType
+      Scriptability: None
+      AliasFor: Shape

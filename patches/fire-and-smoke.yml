@@ -4,36 +4,48 @@ Change:
       Serialization:
         Type: SerializesAs
         As: size_xml
-    size:
-      AliasFor: Size
-    size_xml:
-      AliasFor: Size
-
     Heat:
       Serialization:
         Type: SerializesAs
         As: heat_xml
-    heat_xml:
-      AliasFor: Heat
 
   Smoke:
     Opacity:
       Serialization:
         Type: SerializesAs
         As: opacity_xml
-    opacity_xml:
-      AliasFor: Opacity
-
     Size:
       Serialization:
         Type: SerializesAs
         As: size_xml
-    size_xml:
-      AliasFor: Size
-
     RiseVelocity:
       Serialization:
         Type: SerializesAs
         As: riseVelocity_xml
+
+# As of Roblox 726 these serialization-only aliases are no longer present in
+# the API dump, so they must be added rather than changed.
+Add:
+  Fire:
+    size_xml:
+      DataType: !Value Float32
+      Scriptability: None
+      AliasFor: Size
+    heat_xml:
+      DataType: !Value Float32
+      Scriptability: None
+      AliasFor: Heat
+
+  Smoke:
+    opacity_xml:
+      DataType: !Value Float32
+      Scriptability: None
+      AliasFor: Opacity
+    size_xml:
+      DataType: !Value Float32
+      Scriptability: None
+      AliasFor: Size
     riseVelocity_xml:
+      DataType: !Value Float32
+      Scriptability: None
       AliasFor: RiseVelocity

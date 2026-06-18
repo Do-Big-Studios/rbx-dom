@@ -2,18 +2,21 @@ use std::{collections::HashMap, fs, path::Path};
 
 use anyhow::{anyhow, bail, Context};
 use rbx_reflection::{
-    MigrationOperation, PropertyKind, PropertySerialization, ReflectionDatabase, Scriptability,
+    MigrationOperation, PropertyDescriptor, PropertyKind, PropertySerialization,
+    ReflectionDatabase, Scriptability,
 };
 use rbx_types::{Variant, VariantType};
 use serde::Deserialize;
 
 pub struct Patches {
     change: HashMap<String, HashMap<String, PropertyChange>>,
+    add: HashMap<String, HashMap<String, PropertyAdd>>,
 }
 
 impl Patches {
     pub fn load(dir: &Path) -> anyhow::Result<Self> {
         let mut change = HashMap::new();
+        let mut add = HashMap::new();
 
         for entry in fs::read_dir(dir)? {
             let entry = entry?;
@@ -22,15 +25,50 @@ impl Patches {
                 .with_context(|| format!("Error parsing patch file {}", entry.path().display()))?;
 
             change.extend(patch.change);
+            add.extend(patch.add);
         }
 
-        Ok(Self { change })
+        Ok(Self { change, add })
     }
 
     pub fn apply_pre_default<'db>(
         &'db self,
         database: &mut ReflectionDatabase<'db>,
     ) -> anyhow::Result<()> {
+        // Add patches run first so that Change patches can reference properties
+        // they introduce. These cover serialization-only members that Roblox
+        // omits from the API dump (e.g. Instance.Attributes, BasePart.Color3uint8).
+        for (class_name, class_adds) in &self.add {
+            let class = database
+                .classes
+                .get_mut(class_name.as_str())
+                .ok_or_else(|| {
+                    anyhow!(
+                        "Class {} referenced in add patch does not exist in database",
+                        class_name
+                    )
+                })?;
+
+            for (property_name, property_add) in class_adds {
+                if class.properties.contains_key(property_name.as_str()) {
+                    bail!(
+                        "Property {}.{} added in patch file already exists in database",
+                        class_name,
+                        property_name
+                    );
+                }
+
+                let mut property = PropertyDescriptor::new(
+                    property_name.as_str(),
+                    (&property_add.data_type).into(),
+                );
+                property.kind = property_add.kind();
+                property.scriptability = property_add.scriptability;
+
+                class.properties.insert(property_name.as_str(), property);
+            }
+        }
+
         for (class_name, class_changes) in &self.change {
             let class = database
                 .classes
@@ -153,6 +191,45 @@ impl Patches {
             }
         }
 
+        for (class_name, class_adds) in &self.add {
+            for (prop_name, prop_add) in class_adds {
+                let default_value = match &prop_add.default_value {
+                    Some(value) => value,
+                    None => continue,
+                };
+                let prop_data = database
+                    .classes
+                    .get(class_name.as_str())
+                    .unwrap()
+                    .properties
+                    .get(prop_name.as_str());
+                if let Some(prop_data) = prop_data {
+                    match (prop_data.data_type.ty(), default_value.ty()) {
+                        (existing, new) if existing == new => {}
+                        (expected, actual) => bail!(
+                            "Bad type given for {class_name}.{prop_name}'s DefaultValue patch.\n\
+                            Expected {expected:?}, got {actual:?}"
+                        ),
+                    }
+                }
+                let subclass_list = subclass_map.get(class_name).ok_or_else(|| {
+                    anyhow!(
+                        "Class {} referenced in add patch does not exist in database",
+                        class_name
+                    )
+                })?;
+                for descendant in subclass_list {
+                    let class = database
+                        .classes
+                        .get_mut(descendant.as_str())
+                        .expect("class listed in subclass map should exist");
+                    class
+                        .default_properties
+                        .insert(prop_name.as_str(), default_value.clone());
+                }
+            }
+        }
+
         Ok(())
     }
 }
@@ -162,6 +239,8 @@ impl Patches {
 struct Patch {
     #[serde(default)]
     change: HashMap<String, HashMap<String, PropertyChange>>,
+    #[serde(default)]
+    add: HashMap<String, HashMap<String, PropertyAdd>>,
 }
 
 #[derive(Deserialize)]
@@ -172,6 +251,41 @@ struct PropertyChange {
     serialization: Option<Serialization>,
     scriptability: Option<Scriptability>,
     default_value: Option<Variant>,
+}
+
+/// Introduces a property that is completely absent from Roblox's API dump.
+/// Unlike a `Change`, an `Add` patch creates the property, so it must specify
+/// the full descriptor. Exactly one of `AliasFor` / `Serialization` is required.
+#[derive(Deserialize)]
+#[serde(rename_all = "PascalCase", deny_unknown_fields)]
+struct PropertyAdd {
+    data_type: DataType,
+    alias_for: Option<String>,
+    serialization: Option<Serialization>,
+    scriptability: Scriptability,
+    default_value: Option<Variant>,
+}
+
+impl PropertyAdd {
+    fn kind(&self) -> PropertyKind<'_> {
+        match (&self.alias_for, &self.serialization) {
+            (Some(alias), None) => PropertyKind::Alias {
+                alias_for: alias.as_str(),
+            },
+
+            (None, Some(serialization)) => PropertyKind::Canonical {
+                serialization: serialization.into(),
+            },
+
+            (Some(_), Some(_)) => {
+                panic!("property additions cannot specify both AliasFor and Serialization")
+            }
+
+            (None, None) => {
+                panic!("property additions must specify either AliasFor or Serialization")
+            }
+        }
+    }
 }
 
 #[derive(Debug, Clone, Deserialize)]

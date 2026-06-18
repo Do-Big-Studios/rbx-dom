@@ -12,7 +12,7 @@ expression: decoded_viewed
     Anchored:
       Bool: false
     AssetId:
-      ContentId: ""
+      BinaryString: ""
     Attributes:
       Attributes: {}
     AudioCanCollide:
@@ -222,7 +222,7 @@ expression: decoded_viewed
     Anchored:
       Bool: false
     AssetId:
-      ContentId: ""
+      BinaryString: ""
     Attributes:
       Attributes: {}
     AudioCanCollide:

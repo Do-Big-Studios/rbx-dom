@@ -4,7 +4,14 @@ Change:
       Serialization:
         Type: SerializesAs
         As: PackageIdSerialize
-    PackageIdSerialize:
-      AliasFor: PackageId
     SerializedDefaultAttributes:
       Scriptability: None
+
+# As of Roblox 726 PackageLink.PackageIdSerialize is no longer present in the
+# API dump, so it must be added rather than changed.
+Add:
+  PackageLink:
+    PackageIdSerialize:
+      DataType: !Value ContentId
+      Scriptability: None
+      AliasFor: PackageId

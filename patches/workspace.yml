@@ -4,9 +4,18 @@ Change:
       Serialization:
         Type: SerializesAs
         As: SignalBehavior2
+
+# As of Roblox 726 these serialization-only members are no longer present in
+# the API dump, so they must be added rather than changed.
+Add:
+  Workspace:
     SignalBehavior2:
+      DataType: !Enum SignalBehavior
+      Scriptability: None
       AliasFor: SignalBehavior
 
     CollisionGroups:
+      DataType: !Value String
+      Scriptability: None
       Serialization:
         Type: Serializes

@@ -1,8 +1,10 @@
-Change:
+# As of Roblox 726 StyleRule.PropertiesSerialize is no longer present in the
+# API dump, so it must be added rather than changed.
+Add:
   StyleRule:
     PropertiesSerialize:
       DataType: !Value Attributes
+      Scriptability: Custom
       Serialization:
         Type: SerializesAs
         As: PropertiesSerialize
-      Scriptability: Custom
