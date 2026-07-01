@@ -1,9 +1,11 @@
 # rbx_binary Changelog
 
 ## Unreleased
+* Fixed deserialization of `Tags` (and other string-backed properties like `Attributes` and `MaterialColors`) that Roblox now stores in the binary `SharedString` index instead of as an inline `String`. Previously these aborted with a `Type mismatch: Property ....Tags should be SharedString, but it was Tags` error. ([#635])
 * Fixed the serializer writing a `Ray`'s X component a second time in place of its Z, so `Ray` values (e.g. `RayValue.Value`) lost their Z direction on save. ([#609])
 
 [#609]: https://github.com/rojo-rbx/rbx-dom/pull/609
+[#635]: https://github.com/rojo-rbx/rbx-dom/issues/635
 
 ## 2.0.1 (2025-11-27)
 * Improved performance in several ways. Serializing in particular has been dramatically improved.

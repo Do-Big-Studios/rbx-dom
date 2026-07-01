@@ -63,6 +63,39 @@ fn read_tags() {
 }
 
 #[test]
+fn read_tags_from_shared_string() {
+    let _ = env_logger::try_init();
+
+    // Roblox (2026-06-30) began serializing Tags as a SharedString reference in
+    // rbxmx files. The base64 payload decodes to "Hello\0World", so the Tags
+    // property must decode back to Variant::Tags, not a raw SharedString.
+    let document = r#"
+        <roblox version="4">
+            <Item class="Folder" referent="hello">
+                <Properties>
+                    <SharedString name="Tags">TagsSharedHash</SharedString>
+                </Properties>
+            </Item>
+            <SharedStrings>
+                <SharedString md5="TagsSharedHash">SGVsbG8AV29ybGQ=</SharedString>
+            </SharedStrings>
+        </roblox>
+    "#;
+
+    let dom = crate::from_str_default(document).unwrap();
+    let folder = dom.get_by_ref(dom.root().children()[0]).unwrap();
+
+    let mut tags = Tags::new();
+    tags.push("Hello");
+    tags.push("World");
+
+    assert_eq!(
+        folder.properties.get(&"Tags".into()),
+        Some(&Variant::Tags(tags))
+    );
+}
+
+#[test]
 fn write_empty_tags() {
     let _ = env_logger::try_init();
 
