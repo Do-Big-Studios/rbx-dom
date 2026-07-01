@@ -1,5 +1,10 @@
 # rbx_types Changelog
 
+# Unreleased
+* Fixed `Matrix3::to_basic_rotation_id` snapping near-axis-aligned rotation matrices to exact `±1`/`0` during binary serialization by using exact equality instead of an `EPSILON` tolerance, so non-canonical CFrames round-trip byte-for-byte. ([#601])
+
+[#601]: https://github.com/rojo-rbx/rbx-dom/pull/601
+
 # 3.1.0 (2025-11-27)
 * Fixed `serde::Deserialize` implementations for `BinaryString`, `SharedString`, `NetAssetRef`, `Faces`, and `Axes` to properly utilize visitors. ([#563])
 * Added `CFrame::identity` convenience method to construct an identity CFrame. ([#567])

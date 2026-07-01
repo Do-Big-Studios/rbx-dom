@@ -69,7 +69,7 @@ expression: decoded_viewed
         Anchored:
           Bool: false
         AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
+          BinaryString: aHR0cHM6Ly93d3cucm9ibG94LmNvbS8vYXNzZXQvP2lkPTI4OTIxMTkxNzk=
         Attributes:
           Attributes: {}
         BackParamA:
@@ -240,7 +240,7 @@ expression: decoded_viewed
         Anchored:
           Bool: false
         AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
+          BinaryString: aHR0cHM6Ly93d3cucm9ibG94LmNvbS8vYXNzZXQvP2lkPTI4OTIxMTkxNzk=
         Attributes:
           Attributes: {}
         BackParamA:
@@ -411,7 +411,7 @@ expression: decoded_viewed
         Anchored:
           Bool: false
         AssetId:
-          ContentId: ""
+          BinaryString: ""
         Attributes:
           Attributes: {}
         BackParamA:
@@ -582,7 +582,7 @@ expression: decoded_viewed
         Anchored:
           Bool: false
         AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
+          BinaryString: aHR0cHM6Ly93d3cucm9ibG94LmNvbS8vYXNzZXQvP2lkPTI4OTIxMTkxNzk=
         Attributes:
           Attributes: {}
         BackParamA:
@@ -753,7 +753,7 @@ expression: decoded_viewed
         Anchored:
           Bool: false
         AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
+          BinaryString: aHR0cHM6Ly93d3cucm9ibG94LmNvbS8vYXNzZXQvP2lkPTI4OTIxMTkxNzk=
         Attributes:
           Attributes: {}
         BackParamA:
@@ -924,7 +924,7 @@ expression: decoded_viewed
         Anchored:
           Bool: false
         AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
+          BinaryString: aHR0cHM6Ly93d3cucm9ibG94LmNvbS8vYXNzZXQvP2lkPTI4OTIxMTkxNzk=
         Attributes:
           Attributes: {}
         BackParamA:
@@ -1095,7 +1095,7 @@ expression: decoded_viewed
         Anchored:
           Bool: false
         AssetId:
-          ContentId: ""
+          BinaryString: ""
         Attributes:
           Attributes: {}
         BackParamA:
@@ -1266,7 +1266,7 @@ expression: decoded_viewed
         Anchored:
           Bool: false
         AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
+          BinaryString: aHR0cHM6Ly93d3cucm9ibG94LmNvbS8vYXNzZXQvP2lkPTI4OTIxMTkxNzk=
         Attributes:
           Attributes: {}
         BackParamA:

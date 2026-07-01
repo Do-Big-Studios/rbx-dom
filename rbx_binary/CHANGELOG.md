@@ -1,5 +1,10 @@
 # rbx_binary Changelog
 
+## Unreleased
+* Fixed the serializer writing a `Ray`'s X component a second time in place of its Z, so `Ray` values (e.g. `RayValue.Value`) lost their Z direction on save. ([#609])
+
+[#609]: https://github.com/rojo-rbx/rbx-dom/pull/609
+
 ## 2.0.1 (2025-11-27)
 * Improved performance in several ways. Serializing in particular has been dramatically improved.
 

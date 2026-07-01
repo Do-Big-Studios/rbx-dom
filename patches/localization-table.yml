@@ -1,6 +1,11 @@
-Change:
+# As of Roblox 726 LocalizationTable.Contents is no longer present in the API
+# dump, so it must be added rather than changed. 'Contents' is the name of the
+# field in the Roblox file formats, so it makes sense to use it as the
+# canonical name of this property.
+Add:
   LocalizationTable:
-    # 'Contents' is the name of the field in the Roblox file formats, so it
-    # makes sense to use it as the canonical name of this property.
     Contents:
+      DataType: !Value String
       Scriptability: Custom
+      Serialization:
+        Type: Serializes

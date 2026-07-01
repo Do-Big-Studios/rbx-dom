@@ -207,6 +207,26 @@ fn add_property(instance: &mut Instance, canonical_property: &CanonicalProperty,
     }
 }
 
+/// Logs a single warning for a `String` property whose bytes were not valid
+/// UTF-8 and had to be read with `from_utf8_lossy`. This almost always means
+/// the source file holds corrupt data for that property (e.g. a dangling
+/// internal reference serialized as stale memory), so the value read may not
+/// match the original and may not round-trip. A sample of the raw bytes is
+/// included to make the corruption easy to identify.
+///
+/// Callers are responsible for deduplicating: every `String` property maps to a
+/// single PROP chunk per class, so warning once per chunk yields one warning
+/// per `(class, property)` rather than one per affected instance.
+fn warn_lossy_string(class_name: &str, prop_name: &str, raw: &[u8]) {
+    let sample = &raw[..raw.len().min(16)];
+    log::warn!(
+        "Property {class_name}.{prop_name} contained a non-UTF-8 string and was read with lossy \
+         UTF-8 conversion (raw bytes: {sample:02x?}). This usually indicates corrupt data for this \
+         property in the source file; the value read may differ from the original and may not \
+         round-trip."
+    );
+}
+
 impl<'db, R: Read> DeserializerState<'db, R> {
     pub(super) fn new(
         deserializer: &'db Deserializer<'db>,
@@ -385,17 +405,16 @@ impl<'db, R: Read> DeserializerState<'db, R> {
             // path, we should use the reflection database to figure out its
             // default name. This should be rare: effectively never!
 
+            let mut warned_lossy = false;
             for instance in instances {
                 let binary_string = chunk.read_binary_string()?;
                 let value = match std::str::from_utf8(binary_string) {
                     Ok(value) => Cow::Borrowed(value),
                     Err(_) => {
-                        log::warn!(
-                            "Performing lossy string conversion on property {}.{} because it did not contain UTF-8.
-This may cause unexpected or broken behavior in your final results if you rely on this property being non UTF-8.",
-                            type_info.type_name,
-                            prop_name
-                        );
+                        if !warned_lossy {
+                            warned_lossy = true;
+                            warn_lossy_string(&type_info.type_name, prop_name, binary_string);
+                        }
 
                         String::from_utf8_lossy(binary_string)
                     }
@@ -422,17 +441,20 @@ This may cause unexpected or broken behavior in your final results if you rely o
         match binary_type {
             Type::String => match canonical_type {
                 VariantType::String => {
+                    let mut warned_lossy = false;
                     for instance in instances {
                         let binary_string = chunk.read_binary_string()?;
                         let value = match std::str::from_utf8(binary_string) {
                             Ok(value) => Cow::Borrowed(value),
                             Err(_) => {
-                                log::warn!(
-                            "Performing lossy string conversion on property {}.{} because it did not contain UTF-8.
-This may cause unexpected or broken behavior in your final results if you rely on this property being non UTF-8.",
-                                    type_info.type_name,
-                                    property.name
-                                );
+                                if !warned_lossy {
+                                    warned_lossy = true;
+                                    warn_lossy_string(
+                                        &type_info.type_name,
+                                        &property.name,
+                                        binary_string,
+                                    );
+                                }
 
                                 String::from_utf8_lossy(binary_string)
                             }

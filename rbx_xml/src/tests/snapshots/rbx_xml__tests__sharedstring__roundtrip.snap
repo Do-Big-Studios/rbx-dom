@@ -10,34 +10,8 @@ expression: "DomViewer::new().view_children(&roundtrip)"
       Attributes: {}
     LevelOfDetail:
       Enum: 0
-    ModelMeshCFrame:
-      CFrame:
-        position:
-          - 0
-          - 0
-          - 0
-        orientation:
-          - - 1
-            - 0
-            - 0
-          - - 0
-            - 1
-            - 0
-          - - 0
-            - 0
-            - 1
-    ModelMeshData:
-      len: 0
-      hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-    ModelMeshSize:
-      Vector3:
-        - 0
-        - 0
-        - 0
     ModelStreamingMode:
       Enum: 0
-    NeedsPivotMigration:
-      Bool: false
     PrimaryPart: "null"
     Scale:
       Float32: 1
@@ -68,8 +42,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
       properties:
         Anchored:
           Bool: false
-        AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
         Attributes:
           Attributes: {}
         BackParamA:
@@ -112,11 +84,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Bool: true
         CastShadow:
           Bool: true
-        ChildData:
-          BinaryString: ""
-        ChildData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
         CollisionGroup:
           String: Default
         CollisionGroupId:
@@ -128,8 +95,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             - 172
         CustomPhysicalProperties:
           PhysicalProperties: Default
-        FormFactor:
-          Enum: 3
         FrontParamA:
           Float32: -0.5
         FrontParamB:
@@ -138,11 +103,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 10
         FrontSurfaceInput:
           Enum: 0
-        InitialSize:
-          Vector3:
-            - 1.0000002
-            - 18
-            - 31.000004
         LeftParamA:
           Float32: -0.5
         LeftParamB:
@@ -159,16 +119,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 272
         MaterialVariant:
           String: ""
-        MeshData:
-          BinaryString: ""
-        MeshData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-        PhysicalConfigData:
-          len: 8350
-          hash: fb095154e907fd5daaca93bae5bf68ca6400ee1c213e897c65cbf95c65fb4463
-        PhysicsData:
-          BinaryString: ""
         PivotOffset:
           CFrame:
             position:
@@ -239,8 +189,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
       properties:
         Anchored:
           Bool: false
-        AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
         Attributes:
           Attributes: {}
         BackParamA:
@@ -283,11 +231,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Bool: true
         CastShadow:
           Bool: true
-        ChildData:
-          BinaryString: ""
-        ChildData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
         CollisionGroup:
           String: Default
         CollisionGroupId:
@@ -299,8 +242,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             - 172
         CustomPhysicalProperties:
           PhysicalProperties: Default
-        FormFactor:
-          Enum: 3
         FrontParamA:
           Float32: -0.5
         FrontParamB:
@@ -309,11 +250,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 10
         FrontSurfaceInput:
           Enum: 0
-        InitialSize:
-          Vector3:
-            - 1.0000002
-            - 18
-            - 31.000004
         LeftParamA:
           Float32: -0.5
         LeftParamB:
@@ -330,16 +266,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 272
         MaterialVariant:
           String: ""
-        MeshData:
-          BinaryString: ""
-        MeshData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-        PhysicalConfigData:
-          len: 8350
-          hash: fb095154e907fd5daaca93bae5bf68ca6400ee1c213e897c65cbf95c65fb4463
-        PhysicsData:
-          BinaryString: ""
         PivotOffset:
           CFrame:
             position:
@@ -410,8 +336,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
       properties:
         Anchored:
           Bool: false
-        AssetId:
-          ContentId: ""
         Attributes:
           Attributes: {}
         BackParamA:
@@ -454,11 +378,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Bool: true
         CastShadow:
           Bool: true
-        ChildData:
-          BinaryString: ""
-        ChildData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
         CollisionGroup:
           String: Default
         CollisionGroupId:
@@ -470,8 +389,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             - 248
         CustomPhysicalProperties:
           PhysicalProperties: Default
-        FormFactor:
-          Enum: 3
         FrontParamA:
           Float32: -0.5
         FrontParamB:
@@ -480,11 +397,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 10
         FrontSurfaceInput:
           Enum: 0
-        InitialSize:
-          Vector3:
-            - 4.8
-            - 2.0098171
-            - 2.0169144
         LeftParamA:
           Float32: -0.5
         LeftParamB:
@@ -501,16 +413,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 1088
         MaterialVariant:
           String: ""
-        MeshData:
-          BinaryString: ""
-        MeshData2:
-          len: 36
-          hash: a8e881ce93449542139935bd0ec3f0a77725c368b5a699b2b87077d9fd842a64
-        PhysicalConfigData:
-          len: 19694
-          hash: c0f5b001cda7f15fa5f109b9872cecc30fcc0ce5d83a101d95a77f4ee7cfb221
-        PhysicsData:
-          BinaryString: ""
         PivotOffset:
           CFrame:
             position:
@@ -581,8 +483,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
       properties:
         Anchored:
           Bool: false
-        AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
         Attributes:
           Attributes: {}
         BackParamA:
@@ -625,11 +525,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Bool: true
         CastShadow:
           Bool: true
-        ChildData:
-          BinaryString: ""
-        ChildData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
         CollisionGroup:
           String: Default
         CollisionGroupId:
@@ -641,8 +536,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             - 172
         CustomPhysicalProperties:
           PhysicalProperties: Default
-        FormFactor:
-          Enum: 3
         FrontParamA:
           Float32: -0.5
         FrontParamB:
@@ -651,11 +544,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 10
         FrontSurfaceInput:
           Enum: 0
-        InitialSize:
-          Vector3:
-            - 1.0000002
-            - 18
-            - 31.000004
         LeftParamA:
           Float32: -0.5
         LeftParamB:
@@ -672,16 +560,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 272
         MaterialVariant:
           String: ""
-        MeshData:
-          BinaryString: ""
-        MeshData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-        PhysicalConfigData:
-          len: 8350
-          hash: fb095154e907fd5daaca93bae5bf68ca6400ee1c213e897c65cbf95c65fb4463
-        PhysicsData:
-          BinaryString: ""
         PivotOffset:
           CFrame:
             position:
@@ -752,8 +630,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
       properties:
         Anchored:
           Bool: false
-        AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
         Attributes:
           Attributes: {}
         BackParamA:
@@ -796,11 +672,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Bool: true
         CastShadow:
           Bool: true
-        ChildData:
-          BinaryString: ""
-        ChildData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
         CollisionGroup:
           String: Default
         CollisionGroupId:
@@ -812,8 +683,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             - 172
         CustomPhysicalProperties:
           PhysicalProperties: Default
-        FormFactor:
-          Enum: 3
         FrontParamA:
           Float32: -0.5
         FrontParamB:
@@ -822,11 +691,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 10
         FrontSurfaceInput:
           Enum: 0
-        InitialSize:
-          Vector3:
-            - 1.0000002
-            - 18
-            - 31.000004
         LeftParamA:
           Float32: -0.5
         LeftParamB:
@@ -843,16 +707,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 272
         MaterialVariant:
           String: ""
-        MeshData:
-          BinaryString: ""
-        MeshData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-        PhysicalConfigData:
-          len: 8350
-          hash: fb095154e907fd5daaca93bae5bf68ca6400ee1c213e897c65cbf95c65fb4463
-        PhysicsData:
-          BinaryString: ""
         PivotOffset:
           CFrame:
             position:
@@ -923,8 +777,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
       properties:
         Anchored:
           Bool: false
-        AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
         Attributes:
           Attributes: {}
         BackParamA:
@@ -967,11 +819,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Bool: true
         CastShadow:
           Bool: true
-        ChildData:
-          BinaryString: ""
-        ChildData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
         CollisionGroup:
           String: Default
         CollisionGroupId:
@@ -983,8 +830,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             - 172
         CustomPhysicalProperties:
           PhysicalProperties: Default
-        FormFactor:
-          Enum: 3
         FrontParamA:
           Float32: -0.5
         FrontParamB:
@@ -993,11 +838,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 10
         FrontSurfaceInput:
           Enum: 0
-        InitialSize:
-          Vector3:
-            - 1.0000002
-            - 18
-            - 31.000004
         LeftParamA:
           Float32: -0.5
         LeftParamB:
@@ -1014,16 +854,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 272
         MaterialVariant:
           String: ""
-        MeshData:
-          BinaryString: ""
-        MeshData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-        PhysicalConfigData:
-          len: 8350
-          hash: fb095154e907fd5daaca93bae5bf68ca6400ee1c213e897c65cbf95c65fb4463
-        PhysicsData:
-          BinaryString: ""
         PivotOffset:
           CFrame:
             position:
@@ -1094,8 +924,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
       properties:
         Anchored:
           Bool: false
-        AssetId:
-          ContentId: ""
         Attributes:
           Attributes: {}
         BackParamA:
@@ -1138,11 +966,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Bool: true
         CastShadow:
           Bool: true
-        ChildData:
-          BinaryString: ""
-        ChildData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
         CollisionGroup:
           String: Default
         CollisionGroupId:
@@ -1154,8 +977,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             - 248
         CustomPhysicalProperties:
           PhysicalProperties: Default
-        FormFactor:
-          Enum: 3
         FrontParamA:
           Float32: -0.5
         FrontParamB:
@@ -1164,11 +985,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 10
         FrontSurfaceInput:
           Enum: 0
-        InitialSize:
-          Vector3:
-            - 4.800001
-            - 2.0047607
-            - 2.0113258
         LeftParamA:
           Float32: -0.5
         LeftParamB:
@@ -1185,16 +1001,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 1088
         MaterialVariant:
           String: ""
-        MeshData:
-          BinaryString: ""
-        MeshData2:
-          len: 36
-          hash: 9262df03156e7ba931096479dc69773b7674d01299e9a832118c53cc21f388ed
-        PhysicalConfigData:
-          len: 16278
-          hash: ab812b4f1546543445cb10ee2ae8a71c7993a54932de7b1f7a60612a8a027dfa
-        PhysicsData:
-          BinaryString: ""
         PivotOffset:
           CFrame:
             position:
@@ -1265,8 +1071,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
       properties:
         Anchored:
           Bool: false
-        AssetId:
-          ContentId: "https://www.roblox.com//asset/?id=2892119179"
         Attributes:
           Attributes: {}
         BackParamA:
@@ -1309,11 +1113,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Bool: true
         CastShadow:
           Bool: true
-        ChildData:
-          BinaryString: ""
-        ChildData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
         CollisionGroup:
           String: Default
         CollisionGroupId:
@@ -1325,8 +1124,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
             - 172
         CustomPhysicalProperties:
           PhysicalProperties: Default
-        FormFactor:
-          Enum: 3
         FrontParamA:
           Float32: -0.5
         FrontParamB:
@@ -1335,11 +1132,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 10
         FrontSurfaceInput:
           Enum: 0
-        InitialSize:
-          Vector3:
-            - 1.0000002
-            - 18
-            - 31.000004
         LeftParamA:
           Float32: -0.5
         LeftParamB:
@@ -1356,16 +1148,6 @@ expression: "DomViewer::new().view_children(&roundtrip)"
           Enum: 272
         MaterialVariant:
           String: ""
-        MeshData:
-          BinaryString: ""
-        MeshData2:
-          len: 0
-          hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-        PhysicalConfigData:
-          len: 8350
-          hash: fb095154e907fd5daaca93bae5bf68ca6400ee1c213e897c65cbf95c65fb4463
-        PhysicsData:
-          BinaryString: ""
         PivotOffset:
           CFrame:
             position:

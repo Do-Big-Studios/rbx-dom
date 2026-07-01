@@ -10,32 +10,9 @@ expression: "DomViewer::new().view_children(&decoded)"
       Attributes: {}
     LevelOfDetail:
       Enum: 0
-    ModelMeshCFrame:
-      CFrame:
-        position:
-          - 0
-          - 0
-          - 0
-        orientation:
-          - - 1
-            - 0
-            - 0
-          - - 0
-            - 1
-            - 0
-          - - 0
-            - 0
-            - 1
     ModelMeshData:
       len: 0
       hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-    ModelMeshSize:
-      Vector3:
-        - 0
-        - 0
-        - 0
-    NeedsPivotMigration:
-      Bool: false
     PrimaryPart: "null"
     SourceAssetId:
       Int64: -1
@@ -52,32 +29,9 @@ expression: "DomViewer::new().view_children(&decoded)"
       Attributes: {}
     LevelOfDetail:
       Enum: 0
-    ModelMeshCFrame:
-      CFrame:
-        position:
-          - 0
-          - 0
-          - 0
-        orientation:
-          - - 1
-            - 0
-            - 0
-          - - 0
-            - 1
-            - 0
-          - - 0
-            - 0
-            - 1
     ModelMeshData:
       len: 0
       hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-    ModelMeshSize:
-      Vector3:
-        - 0
-        - 0
-        - 0
-    NeedsPivotMigration:
-      Bool: false
     PrimaryPart: "null"
     SourceAssetId:
       Int64: -1
@@ -108,32 +62,9 @@ expression: "DomViewer::new().view_children(&decoded)"
       Attributes: {}
     LevelOfDetail:
       Enum: 0
-    ModelMeshCFrame:
-      CFrame:
-        position:
-          - 0
-          - 0
-          - 0
-        orientation:
-          - - 1
-            - 0
-            - 0
-          - - 0
-            - 1
-            - 0
-          - - 0
-            - 0
-            - 1
     ModelMeshData:
       len: 0
       hash: af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262
-    ModelMeshSize:
-      Vector3:
-        - 0
-        - 0
-        - 0
-    NeedsPivotMigration:
-      Bool: false
     PrimaryPart: "null"
     SourceAssetId:
       Int64: -1
@@ -156,4 +87,3 @@ expression: "DomViewer::new().view_children(&decoded)"
             - 0
             - 1
   children: []
-

@@ -1056,7 +1056,7 @@ impl<'dom, 'db: 'dom, W: Write> SerializerState<'dom, 'db, W> {
                                 chunk.write_le_f32(value.origin.z)?;
                                 chunk.write_le_f32(value.direction.x)?;
                                 chunk.write_le_f32(value.direction.y)?;
-                                chunk.write_le_f32(value.direction.x)?;
+                                chunk.write_le_f32(value.direction.z)?;
                             } else {
                                 return type_mismatch(i, rbx_value, "Ray");
                             }

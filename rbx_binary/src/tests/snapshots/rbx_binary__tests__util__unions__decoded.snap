@@ -9,7 +9,7 @@ expression: decoded_viewed
     Anchored:
       Bool: false
     AssetId:
-      ContentId: ""
+      BinaryString: ""
     Attributes:
       Attributes: {}
     BackParamA:
@@ -152,7 +152,7 @@ expression: decoded_viewed
     Anchored:
       Bool: false
     AssetId:
-      ContentId: ""
+      BinaryString: ""
     Attributes:
       Attributes: {}
     BackParamA:
@@ -295,7 +295,7 @@ expression: decoded_viewed
     Anchored:
       Bool: false
     AssetId:
-      ContentId: ""
+      BinaryString: ""
     Attributes:
       Attributes: {}
     BackParamA:
@@ -431,4 +431,3 @@ expression: decoded_viewed
         - 0
         - 0
   children: []
-
