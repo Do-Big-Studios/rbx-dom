@@ -3,7 +3,10 @@ use std::{collections::hash_map::Entry, io::Read};
 use ahash::{HashMap, HashMapExt, HashSet, HashSetExt};
 use log::trace;
 use rbx_dom_weak::{
-    types::{Ref, SharedString, Variant},
+    types::{
+        Attributes, BinaryString, ContentId, MaterialColors, Ref, SharedString, Tags, Variant,
+        VariantType,
+    },
     InstanceBuilder, Ustr, WeakDom,
 };
 use rbx_reflection::{PropertyKind, PropertySerialization, ReflectionDatabase};
@@ -274,6 +277,57 @@ fn apply_net_asset_rewrites(state: &mut ParseState) {
     }
 }
 
+/// Decodes a value from the SharedString repository into the canonical variant
+/// for a property. Roblox (2026-06-30) began storing string-backed properties
+/// (starting with Tags) in the SharedString repository to deduplicate identical
+/// payloads, so a `<SharedString>` element can back a `Tags`/`Attributes`/etc.
+/// property. Falls back to a raw `SharedString` for genuine SharedString
+/// properties (and when reflection is disabled).
+fn shared_string_to_variant(
+    options: &DecodeOptions<'_>,
+    class_name: &str,
+    property_name: &str,
+    value: SharedString,
+) -> Variant {
+    if options.use_reflection() {
+        if let Some(descriptor) =
+            find_canonical_property_descriptor(class_name, property_name, options.database)
+        {
+            match descriptor.data_type.ty() {
+                VariantType::Tags => {
+                    if let Ok(tags) = Tags::decode(value.data()) {
+                        return tags.into();
+                    }
+                }
+                VariantType::Attributes => {
+                    if let Ok(attributes) = Attributes::from_reader(value.data()) {
+                        return attributes.into();
+                    }
+                }
+                VariantType::MaterialColors => {
+                    if let Ok(material_colors) = MaterialColors::decode(value.data()) {
+                        return material_colors.into();
+                    }
+                }
+                VariantType::String => {
+                    return String::from_utf8_lossy(value.data()).into_owned().into();
+                }
+                VariantType::ContentId => {
+                    if let Ok(text) = std::str::from_utf8(value.data()) {
+                        return ContentId::from(text).into();
+                    }
+                }
+                VariantType::BinaryString => {
+                    return BinaryString::from(value.data()).into();
+                }
+                _ => {}
+            }
+        }
+    }
+
+    Variant::SharedString(value)
+}
+
 fn apply_shared_string_rewrites(state: &mut ParseState) {
     for rewrite in &state.shared_string_rewrites {
         let new_value = match state.known_shared_strings.get(&rewrite.hash) {
@@ -285,10 +339,17 @@ fn apply_shared_string_rewrites(state: &mut ParseState) {
             "rbx_xml bug: had ID in SharedString rewrite list that didn't end up in the tree",
         );
 
-        instance.properties.insert(
-            rewrite.property_name.as_str().into(),
-            Variant::SharedString(new_value),
+        let class_name = instance.class.as_str().to_owned();
+        let value = shared_string_to_variant(
+            &state.options,
+            &class_name,
+            &rewrite.property_name,
+            new_value,
         );
+
+        instance
+            .properties
+            .insert(rewrite.property_name.as_str().into(), value);
     }
 }
 

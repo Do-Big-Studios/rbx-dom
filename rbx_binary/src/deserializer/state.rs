@@ -227,6 +227,86 @@ fn warn_lossy_string(class_name: &str, prop_name: &str, raw: &[u8]) {
     );
 }
 
+/// Decodes a raw string buffer (the payload of a `String`-typed or
+/// `SharedString`-typed PROP chunk) into a `Variant` according to the property's
+/// canonical type. Returns `Ok(None)` when the canonical type is not
+/// string-buffer-backed so the caller can raise a `PropTypeMismatch`.
+///
+/// `warned_lossy` is shared across a chunk so the non-UTF-8 `String` warning is
+/// emitted at most once per `(class, property)`.
+fn decode_string_buffer(
+    canonical_type: VariantType,
+    buffer: &[u8],
+    type_name: &str,
+    prop_name: &str,
+    warned_lossy: &mut bool,
+) -> Result<Option<Variant>, InnerError> {
+    Ok(Some(match canonical_type {
+        VariantType::String => {
+            let value = match std::str::from_utf8(buffer) {
+                Ok(value) => Cow::Borrowed(value),
+                Err(_) => {
+                    if !*warned_lossy {
+                        *warned_lossy = true;
+                        warn_lossy_string(type_name, prop_name, buffer);
+                    }
+
+                    String::from_utf8_lossy(buffer)
+                }
+            };
+
+            value.as_ref().into()
+        }
+        VariantType::ContentId => {
+            let value = std::str::from_utf8(buffer).map_err(|_| {
+                std::io::Error::new(
+                    std::io::ErrorKind::InvalidData,
+                    "stream did not contain valid UTF-8",
+                )
+            })?;
+            ContentId::from(value).into()
+        }
+        VariantType::BinaryString => BinaryString::from(buffer).into(),
+        VariantType::Tags => {
+            let Ok(value) = Tags::decode(buffer) else {
+                return Err(InnerError::InvalidPropData {
+                    type_name: type_name.to_string(),
+                    prop_name: prop_name.to_owned(),
+                    valid_value: "a list of valid null-delimited UTF-8 strings",
+                    actual_value: "invalid UTF-8".to_string(),
+                });
+            };
+
+            value.into()
+        }
+        VariantType::Attributes => match Attributes::from_reader(buffer) {
+            Ok(value) => value.into(),
+            Err(err) => {
+                log::warn!(
+                    "Failed to parse Attributes on {type_name} because {err:?}; falling back to BinaryString.
+
+rbx-dom may require changes to fully support this property. Please open an issue at https://github.com/UserGeneratedLLC/rbx-dom/issues and show this warning."
+                );
+
+                BinaryString::from(buffer).into()
+            }
+        },
+        VariantType::MaterialColors => match MaterialColors::decode(buffer) {
+            Ok(value) => value.into(),
+            Err(err) => {
+                log::warn!(
+                    "Failed to parse MaterialColors on {type_name} because {err:?}; falling back to BinaryString.
+
+rbx-dom may require changes to fully support this property. Please open an issue at https://github.com/UserGeneratedLLC/rbx-dom/issues and show this warning."
+                );
+
+                BinaryString::from(buffer).into()
+            }
+        },
+        _ => return Ok(None),
+    }))
+}
+
 impl<'db, R: Read> DeserializerState<'db, R> {
     pub(super) fn new(
         deserializer: &'db Deserializer<'db>,
@@ -439,117 +519,30 @@ impl<'db, R: Read> DeserializerState<'db, R> {
         let canonical_type = property.ty;
 
         match binary_type {
-            Type::String => match canonical_type {
-                VariantType::String => {
-                    let mut warned_lossy = false;
-                    for instance in instances {
-                        let binary_string = chunk.read_binary_string()?;
-                        let value = match std::str::from_utf8(binary_string) {
-                            Ok(value) => Cow::Borrowed(value),
-                            Err(_) => {
-                                if !warned_lossy {
-                                    warned_lossy = true;
-                                    warn_lossy_string(
-                                        &type_info.type_name,
-                                        &property.name,
-                                        binary_string,
-                                    );
-                                }
+            Type::String => {
+                let mut warned_lossy = false;
+                for instance in instances {
+                    let buffer = chunk.read_binary_string()?;
+                    let Some(value) = decode_string_buffer(
+                        canonical_type,
+                        buffer,
+                        &type_info.type_name,
+                        &property.name,
+                        &mut warned_lossy,
+                    )?
+                    else {
+                        return Err(InnerError::PropTypeMismatch {
+                            type_name: type_info.type_name.to_string(),
+                            prop_name: prop_name.to_owned(),
+                            valid_type_names:
+                                "String, ContentId, Content, Tags, Attributes, or BinaryString",
+                            actual_type_name: format!("{canonical_type:?}"),
+                        });
+                    };
 
-                                String::from_utf8_lossy(binary_string)
-                            }
-                        };
-
-                        add_property(instance, &property, value.as_ref().into());
-                    }
+                    add_property(instance, &property, value);
                 }
-                VariantType::ContentId => {
-                    for instance in instances {
-                        let value = chunk.read_string()?;
-                        add_property(instance, &property, ContentId::from(value).into());
-                    }
-                }
-                VariantType::BinaryString => {
-                    for instance in instances {
-                        let value: BinaryString = chunk.read_binary_string()?.into();
-                        add_property(instance, &property, value.into());
-                    }
-                }
-                VariantType::Tags => {
-                    for instance in instances {
-                        let buffer = chunk.read_binary_string()?;
-
-                        let Ok(value) = Tags::decode(buffer) else {
-                            return Err(InnerError::InvalidPropData {
-                                type_name: type_info.type_name.to_string(),
-                                prop_name: prop_name.to_owned(),
-                                valid_value: "a list of valid null-delimited UTF-8 strings",
-                                actual_value: "invalid UTF-8".to_string(),
-                            });
-                        };
-
-                        add_property(instance, &property, value.into());
-                    }
-                }
-                VariantType::Attributes => {
-                    for instance in instances {
-                        let buffer = chunk.read_binary_string()?;
-
-                        match Attributes::from_reader(buffer) {
-                            Ok(value) => {
-                                add_property(instance, &property, value.into());
-                            }
-                            Err(err) => {
-                                log::warn!(
-                                    "Failed to parse Attributes on {} because {:?}; falling back to BinaryString.
-
-rbx-dom may require changes to fully support this property. Please open an issue at https://github.com/UserGeneratedLLC/rbx-dom/issues and show this warning.",
-                                    type_info.type_name,
-                                    err
-                                );
-
-                                add_property(
-                                    instance,
-                                    &property,
-                                    BinaryString::from(buffer).into(),
-                                );
-                            }
-                        }
-                    }
-                }
-                VariantType::MaterialColors => {
-                    for instance in instances {
-                        let buffer = chunk.read_binary_string()?;
-                        match MaterialColors::decode(buffer) {
-                            Ok(value) => add_property(instance, &property, value.into()),
-                            Err(err) => {
-                                log::warn!(
-                                    "Failed to parse MaterialColors on {} because {:?}; falling back to BinaryString.
-
-rbx-dom may require changes to fully support this property. Please open an issue at https://github.com/UserGeneratedLLC/rbx-dom/issues and show this warning.",
-                                    type_info.type_name,
-                                    err
-                                );
-
-                                add_property(
-                                    instance,
-                                    &property,
-                                    BinaryString::from(buffer).into(),
-                                );
-                            }
-                        }
-                    }
-                }
-                invalid_type => {
-                    return Err(InnerError::PropTypeMismatch {
-                        type_name: type_info.type_name.to_string(),
-                        prop_name: prop_name.to_owned(),
-                        valid_type_names:
-                            "String, ContentId, Content, Tags, Attributes, or BinaryString",
-                        actual_type_name: format!("{invalid_type:?}"),
-                    });
-                }
-            },
+            }
             Type::Bool => match canonical_type {
                 VariantType::Bool => {
                     for instance in instances {
@@ -1245,13 +1238,41 @@ rbx-dom may require changes to fully support this property. Please open an issue
                         add_property(instance, &property, net_asset.into());
                     }
                 }
-                invalid_type => {
-                    return Err(InnerError::PropTypeMismatch {
-                        type_name: type_info.type_name.to_string(),
-                        prop_name: prop_name.to_owned(),
-                        valid_type_names: "SharedString",
-                        actual_type_name: format!("{invalid_type:?}"),
-                    })
+                _ => {
+                    // Roblox (2026-06-30) began storing string-backed properties
+                    // (starting with Tags) in the SharedString index to
+                    // deduplicate identical payloads. Decode by canonical type.
+                    let values = chunk.read_interleaved_u32_array(instances.len())?;
+                    let mut warned_lossy = false;
+                    for (value, instance) in values.zip(instances) {
+                        let Some(shared_string) = self.shared_strings.get(value as usize) else {
+                            return Err(InnerError::InvalidPropData {
+                                type_name: type_info.type_name.to_string(),
+                                prop_name: prop_name.to_owned(),
+                                valid_value: "a valid SharedString",
+                                actual_value: format!("{value:?}"),
+                            });
+                        };
+
+                        let Some(decoded) = decode_string_buffer(
+                            canonical_type,
+                            shared_string.data(),
+                            &type_info.type_name,
+                            &property.name,
+                            &mut warned_lossy,
+                        )?
+                        else {
+                            return Err(InnerError::PropTypeMismatch {
+                                type_name: type_info.type_name.to_string(),
+                                prop_name: prop_name.to_owned(),
+                                valid_type_names:
+                                    "SharedString, NetAssetRef, String, ContentId, Tags, Attributes, BinaryString, or MaterialColors",
+                                actual_type_name: format!("{canonical_type:?}"),
+                            });
+                        };
+
+                        add_property(instance, &property, decoded);
+                    }
                 }
             },
             Type::OptionalCFrame => match canonical_type {

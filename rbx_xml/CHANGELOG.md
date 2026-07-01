@@ -1,5 +1,10 @@
 # rbx_xml Changelog
 
+## Unreleased
+* Fixed deserialization of `Tags` (and other string-backed properties like `Attributes` and `MaterialColors`) that Roblox now stores as a `<SharedString>` in rbxmx files. Previously these silently decoded to a raw `SharedString` value instead of their canonical type. ([#635])
+
+[#635]: https://github.com/rojo-rbx/rbx-dom/issues/635
+
 ## 2.0.1 (2025-11-27)
 * Upgrade rbx-dom dependencies.
 
